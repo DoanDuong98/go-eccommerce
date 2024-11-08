@@ -1,0 +1,19 @@
+# Compiled object files
+*.o
+
+# Log files
+logs/
+*.log
+
+# Directory for all build artifacts
+build/
+
+# Dependency directories
+vendor/
+
+# IDE files
+.idea/
+*.iml
+
+# Other
+*.DS_Store
