@@ -9,7 +9,11 @@ mysql:
     maxIdleConns: 10
     maxOpenConns: 100
     connMaxLifeTime: 3600
-security:
-    jwt:
-        key: abc
+logger:
+    log_level: debug
+    file_log_name: './logs/dev.log'
+    max_size: 5
+    max_backups: 3
+    max_age: 28
+    compress: true
 
