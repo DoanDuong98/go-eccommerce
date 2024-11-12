@@ -1,14 +1,14 @@
 server:
     port: 8082
-databases:
-    -   user: admin
-        password: admin
-        host: localhost
-        dbName: admin
-    -   user: order
-        password: admin
-        host: localhost
-        dbName: order
+mysql:
+    username: root
+    password: 1
+    host: 127.0.0.1
+    port: 3306
+    dbName: shopDevGo
+    maxIdleConns: 10
+    maxOpenConns: 100
+    connMaxLifeTime: 3600
 security:
     jwt:
         key: abc
