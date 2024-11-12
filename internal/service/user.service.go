@@ -1,12 +1,12 @@
 package service
 
-import "go-ecommerce-be/internal/repo"/
+import "go-ecommerce-be/internal/repo"
 
 type UserService struct {
 	userRepo *repo.UserRepo
 }
 
-func NewUserService() *UserService  {
+func NewUserService() *UserService {
 	return &UserService{
 		userRepo: repo.NewUserRepo(),
 	}

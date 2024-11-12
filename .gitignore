@@ -15,5 +15,10 @@ vendor/
 .idea/
 *.iml
 
+# file test
+.out
+
 # Other
 *.DS_Store
+
+configs/production.yaml
