@@ -4,6 +4,7 @@ type Config struct {
 	Mysql  MysqlSetting  `mapstructure:"mysql"`
 	Logger LoggerSetting `mapstructure:"logger"`
 	Redis  RedisSetting  `mapstructure:"redis"`
+	Setting ServerSetting `mapstructure:"server"`
 }
 
 type MysqlSetting struct {
@@ -31,4 +32,9 @@ type LoggerSetting struct {
 	MaxAge     int    `mapstructure:"max_age"`
 	MaxBackups int    `mapstructure:"max_backups"`
 	Compress   bool   `mapstructure:"compress"`
+}
+
+type ServerSetting struct {
+	Port		string `mapstructure:"port"`
+	Mode 	   	string `mapstructure:"mode"`
 }

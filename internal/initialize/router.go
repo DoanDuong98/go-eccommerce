@@ -1,18 +1,39 @@
 package initialize
 
 import (
+	"go-ecommerce-be/global"
+	"go-ecommerce-be/internal/routers"
 	"github.com/gin-gonic/gin"
-	c "go-ecommerce-be/internal/controller"
-	"go-ecommerce-be/internal/middlewares"
 )
 
 func InitRouter() *gin.Engine {
-	r := gin.Default()
-	// Use middleware
-	r.Use(middlewares.AuthMiddleware())
-	v1 := r.Group("/v1")
+	var r *gin.Engine
+	if global.Config.Setting.Mode == "dev" {
+		gin.SetMode(gin.DebugMode)
+		gin.ForceConsoleColor()
+		r = gin.Default()
+	} else {
+		gin.SetMode(gin.ReleaseMode)
+		r = gin.New()
+	}
+	// middlewares
+	// r.Use(gin.Logger()) // logger middleware
+	// r.Use(middleware.Cors()) // cors middleware
+	// r.Use(gin.Recovery()) // recovery middleware
+	manageRouter := routers.RouterGroupApp.Admin
+	userRouter := routers.RouterGroupApp.User
+
+	MainGroup := r.Group("/v1")
 	{
-		v1.GET("/ping", c.NewUserController().GetUserById)
+		MainGroup.GET("/ping")
+	}
+	{
+		userRouter.UserRouter.InitUserRouter(MainGroup)
+		userRouter.ProductRouter.InitProductRouter(MainGroup)
+	}
+	{
+		manageRouter.UserRouter.InitUserRouter(MainGroup)
+		manageRouter.AdminRouter.InitAdminRouter(MainGroup)
 	}
 	return r
 }
